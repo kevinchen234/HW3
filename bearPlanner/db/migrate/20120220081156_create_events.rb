@@ -3,8 +3,9 @@ class CreateEvents < ActiveRecord::Migration
     create_table :events do |t|
       t.integer :id
       t.string :name
-      t.datetime :starts
-      t.datetime :ends
+      t.datetime :starts_at
+      t.datetime :ends_at
+      t.integer :owner
       
       t.timestamps
     end

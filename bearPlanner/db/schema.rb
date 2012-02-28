@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(:version => 20120220081322) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
-    t.datetime "starts"
-    t.datetime "ends"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.integer  "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
