@@ -61,8 +61,8 @@ class BearPlannerController < ApplicationController
         @calendars = Calendar.all
         @eventName = event.name
         @eventId = event.id
-        @eventStarts = event.starts
-        @eventEnds = event.ends
+        @eventStarts = event.starts_at
+        @eventEnds = event.ends_at
         @eventOwner = event.owner
         @invitees = Hash.new()
 
