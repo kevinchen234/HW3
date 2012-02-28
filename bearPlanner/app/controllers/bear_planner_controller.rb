@@ -42,7 +42,7 @@ class BearPlannerController < ApplicationController
   end
 
   def show_calendars
-    @calendararray = Calendar.find(:all, :conditions => ['owner=?', (session[:uid])])
+    @calendarArray = Calendar.all
     
   end
 

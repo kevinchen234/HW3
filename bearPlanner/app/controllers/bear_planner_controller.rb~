@@ -42,7 +42,7 @@ class BearPlannerController < ApplicationController
   end
 
   def show_calendars
-    @calendararray = Calendar.find(:all, :conditions => ['owner=?', (session[:uid])])
+    @calendarArray = Calendar.all
     
   end
 
@@ -57,7 +57,7 @@ class BearPlannerController < ApplicationController
     if request.post?
     else
       event = Event.find_by_id(params[:event_id])
-        @calendars = Hash.new()
+        @calendars = Calendar.all
         @eventName = event.name
         @eventId = event.id
         @eventStarts = event.starts
