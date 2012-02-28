@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20120220081322) do
     t.string   "name"
     t.datetime "starts"
     t.datetime "ends"
-    t.string   "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

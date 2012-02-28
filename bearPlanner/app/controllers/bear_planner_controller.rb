@@ -47,10 +47,11 @@ class BearPlannerController < ApplicationController
   end
 
   def show_calendar
-    calendar = Calendar.find(:first, :conditions => ['id=?', (params[:cal_id])])
-    @calName = Calendar.name
-    @calDescription = Calendar.description
-    @eventArray = Event.find(:all, :conditions => ['Calendar=?', (params[:cal_id])])
+    calendar = Calendar.find_by_id(params[:cal_id])
+
+    @calName = calendar.name
+    @calDescription = calendar.description
+    @eventArray = Event.all
   end
 
   def edit_event
