@@ -59,10 +59,10 @@ class BearPlannerController < ApplicationController
     else
       event = Event.find_by_id(params[:event_id])
         calendars = Calendar.all
-        @calendarArray = Array.new(calendars.length)
+        @calendars = Array.new(calendars.length)
         calendars.length.times do |i| # loop using index i
-          @calendarArray[i] = Hash.new()
-          @calendarArray[i]["name"] = calendars[i].id
+          @calendars[i] = Hash.new()
+          @calendars[i]["name"] = calendars[i].id
         end
         @eventName = event.name
         @eventId = event.id
