@@ -64,6 +64,11 @@ class BearPlannerController < ApplicationController
        event.ends_at = params[:ends_at]
        event.owner = event.owner
        event.save
+       redirect_to "show_calendar", :cal_id = 1
+       rescue ActiveRecord::RecordNotSaved
+        redirect_to "edit_event", :notice=>"An error has occurred.", :cal_id = 1, :event_id = 1
+        render :new
+       end
    end
    @eventName = event.name
    @eventId = event.id
