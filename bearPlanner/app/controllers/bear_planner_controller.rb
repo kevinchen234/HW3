@@ -55,31 +55,28 @@ class BearPlannerController < ApplicationController
   end
 
   def edit_event
-    if request.post?
-    else
-      event = Event.find_by_id(params[:event_id])
-        calendars = Calendar.all
-        @calendars = Array.new(calendars.length)
-        calendars.length.times do |i| # loop using index i
-          @calendars[i] = Hash.new()
-          @calendars[i]["name"] = calendars[i].id
-        end
-        @eventName = event.name
-        @eventId = event.id
-        @eventStarts = event.starts_at
-        @eventEnds = event.ends_at
-        @eventOwner = event.owner
-        @invitees = Hash.new()
+   event = Event.find_by_id(params[:event_id])
+   calendars = Calendar.all
+   @calendars = calendars.collect {|c| [c.name, c.id]}
+   if request.post?
+       event.name = params[:eventName]
+       event.starts_at = params[:starts_at]
+       event.ends_at = params[:ends_at]
+       event.owner = event.owner
+       event.save
+   end
+   @eventName = event.name
+   @eventId = event.id
+   @eventStarts = event.starts_at
+   @eventEnds = event.ends_at
+   @eventOwner = event.owner
+   @invitees = Hash.new()
 
-    end
-    #params[:eventName] = Event.name
-    #params[:starts_at] = Event.start_time
-    #params[:ends_at] = Event.end_time
-   # params[:old_cal_id] = Event.old_cal_id
-   # params[:cal_id] = Event.cal_id
-    #params[:invitees] = Event.invitees
-    #params[:inviteMessage] = Event.invite_message   
-  end
+  # params[:old_cal_id] = Event.old_cal_id
+  # params[:cal_id] = Event.cal_id
+   #params[:invitees] = Event.invitees
+   #params[:inviteMessage] = Event.invite_message
+ end
 
   def create_calendar
     if request.post?
