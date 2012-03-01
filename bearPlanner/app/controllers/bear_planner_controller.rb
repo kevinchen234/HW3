@@ -84,10 +84,13 @@ class BearPlannerController < ApplicationController
 
   def create_calendar
     if request.post?
-      params[:calName] = Calendar.name
-      params[:calDescription] = Calendar.description
-      redirect_to :action => "show_calendars"
+      calName = params[:calName]
+      calDescription = params[:calDescription]
+      redirect_to :action => "show_calendars", :cal_id => params[:cal_id]
     end
+    rescue ActiveRecord::RecordNotSaved
+        redirect_to "create_calendar", :notice=>"An error has occurred."
+        render :new
   end
 
   def edit_calendar
