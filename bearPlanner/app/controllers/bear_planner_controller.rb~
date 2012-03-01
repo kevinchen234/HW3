@@ -55,6 +55,7 @@ class BearPlannerController < ApplicationController
   end
 
   def edit_event
+   begin
    event = Event.find_by_id(params[:event_id])
    calendars = Calendar.all
    @calendars = calendars.collect {|c| [c.name, c.id]}

@@ -55,6 +55,7 @@ class BearPlannerController < ApplicationController
   end
 
   def edit_event
+   begin
    event = Event.find_by_id(params[:event_id])
    calendars = Calendar.all
    @calendars = calendars.collect {|c| [c.name, c.id]}
@@ -67,16 +68,16 @@ class BearPlannerController < ApplicationController
        redirect_to :action=>"show_calendar", :cal_id => params[:cal_id]
 
    end
-#   rescue ActiveRecord::RecordNotSaved
- #     redirect_to "edit_event", :notice=>"An error has occurred.", :cal_id => params[:cal_id], :event_id => params[:event_id]
- #     render :new
+   rescue ActiveRecord::RecordNotSaved
+      redirect_to "edit_event", :notice=>"An error has occurred.", :cal_id => params[:cal_id], :event_id => params[:event_id]
+      render :new
    @eventName = event.name
    @eventId = event.id
    @eventStarts = event.starts_at
    @eventEnds = event.ends_at
    @eventOwner = event.owner
    @invitees = Hash.new()
-
+   end
   # params[:old_cal_id] = Event.old_cal_id
   # params[:cal_id] = Event.cal_id
    #params[:invitees] = Event.invitees
