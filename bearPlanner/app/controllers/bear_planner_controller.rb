@@ -91,7 +91,7 @@ class BearPlannerController < ApplicationController
      cal.name = params[:calName]
      cal.description = params[:calDescription]
      cal.save
-     redirect_to :action => "show_calendar", :cal_id => params[:cal_id]
+     redirect_to :action => "show_calendar", :cal_id => cal.id
     end
     rescue ActiveRecord::RecordNotSaved
         redirect_to "create_calendar", :notice=>"An error has occurred."
