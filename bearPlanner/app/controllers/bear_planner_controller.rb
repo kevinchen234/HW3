@@ -123,6 +123,7 @@ class BearPlannerController < ApplicationController
     if Event.count = 0
       cal.destroy
     end
+    end
   end
 
   def create_event
