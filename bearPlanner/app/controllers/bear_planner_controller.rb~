@@ -90,7 +90,7 @@ class BearPlannerController < ApplicationController
     if request.post?
      cal.Name = params[:calName]
      cal.Description = params[:calDescription]
-          cal.save
+     cal.save
      redirect_to :action => "show_calendars", :cal_id => params[:cal_id]
     end
     rescue ActiveRecord::RecordNotSaved

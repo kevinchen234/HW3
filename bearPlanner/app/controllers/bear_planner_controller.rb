@@ -88,8 +88,8 @@ class BearPlannerController < ApplicationController
     begin
     cal = Calendar.new
     if request.post?
-     cal.Name = params[:calName]
-     cal.Description = params[:calDescription]
+     cal.name = params[:calName]
+     cal.description = params[:calDescription]
      cal.save
      redirect_to :action => "show_calendars", :cal_id => params[:cal_id]
     end
