@@ -68,15 +68,15 @@ class BearPlannerController < ApplicationController
        redirect_to :action=>"show_calendar", :cal_id => params[:cal_id]
 
    end
-   rescue ActiveRecord::RecordNotSaved
-      redirect_to "edit_event", :notice=>"An error has occurred.", :cal_id => params[:cal_id], :event_id => params[:event_id]
-      render :new
    @eventName = event.name
    @eventId = event.id
    @eventStarts = event.starts_at
    @eventEnds = event.ends_at
    @eventOwner = event.owner
    @invitees = Hash.new()
+   rescue ActiveRecord::RecordNotSaved
+      redirect_to "edit_event", :notice=>"An error has occurred.", :cal_id => params[:cal_id], :event_id => params[:event_id]
+      render :new
    end
   # params[:old_cal_id] = Event.old_cal_id
   # params[:cal_id] = Event.cal_id
@@ -85,14 +85,16 @@ class BearPlannerController < ApplicationController
  end
 
   def create_calendar
-#    if request.post?
- #     calName = params[:calName]
-  #    calDescription = params[:calDescription]
-   #   redirect_to :action => "show_calendars", :cal_id => params[:cal_id]
-    #end
-    #rescue ActiveRecord::RecordNotSaved
-     #   redirect_to "create_calendar", :notice=>"An error has occurred."
-      #  render :new
+    begin
+    if request.post?
+     calName = params[:calName]
+     calDescription = params[:calDescription]
+     redirect_to :action => "show_calendars", :cal_id => params[:cal_id]
+    end
+    rescue ActiveRecord::RecordNotSaved
+        redirect_to "create_calendar", :notice=>"An error has occurred."
+        render :new
+     end
   end
 
   def edit_calendar
