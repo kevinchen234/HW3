@@ -5,7 +5,8 @@ class CreateEvents < ActiveRecord::Migration
       t.string :name
       t.datetime :starts_at
       t.datetime :ends_at
-      t.string :owner
+      t.string :invite_message
+      t.integer :cal_id
       
       t.timestamps
     end

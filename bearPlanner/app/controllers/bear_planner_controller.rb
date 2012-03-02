@@ -118,6 +118,11 @@ class BearPlannerController < ApplicationController
   end
 
   def delete_calendar
+    begin
+    cal = Calendar.find_by_id(params[:cal_id])
+    if Event.count = 0
+      cal.destroy
+    end
   end
 
   def create_event

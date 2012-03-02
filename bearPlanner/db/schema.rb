@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 20120220081322) do
   create_table "calendars", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,12 +25,16 @@ ActiveRecord::Schema.define(:version => 20120220081322) do
     t.string   "name"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.integer  "owner"
+    t.string   "invite_message"
+    t.integer  "cal_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "invites", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.integer  "cal_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
